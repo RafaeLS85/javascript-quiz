@@ -1,0 +1,30 @@
+{
+    "quiz": [
+      {
+        "question": "What does HTML stand for?",
+        "options": ["HyperText Markup Language", "HyperText Modeling Language", "HyperText Management Language", "HyperText Manipulation Language"],
+        "correctAnswer": "HyperText Markup Language"
+      },
+      {
+        "question": "Which of the following is not a JavaScript data type?",
+        "options": ["String", "Boolean", "Float", "Object"],
+        "correctAnswer": "Float"
+      },
+      {
+        "question": "How do you declare a variable in JavaScript?",
+        "options": ["var x;", "variable x;", "v x;", "declare x;"],
+        "correctAnswer": "var x;"
+      },
+      {
+        "question": "What is the purpose of the 'document.getElementById()' method?",
+        "options": ["To get elements by class name", "To get elements by tag name", "To get elements by ID", "To get elements by name"],
+        "correctAnswer": "To get elements by ID"
+      },
+      {
+        "question": "What is the result of 10 + '5' in JavaScript?",
+        "options": ["105", "15", "10", "Error"],
+        "correctAnswer": "105"
+      }
+    ]
+  }
+  
