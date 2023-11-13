@@ -1,30 +1,56 @@
 {
-    "quiz": [
-      {
-        "question": "What does HTML stand for?",
-        "options": ["HyperText Markup Language", "HyperText Modeling Language", "HyperText Management Language", "HyperText Manipulation Language"],
-        "correctAnswer": "HyperText Markup Language"
-      },
-      {
-        "question": "Which of the following is not a JavaScript data type?",
-        "options": ["String", "Boolean", "Float", "Object"],
-        "correctAnswer": "Float"
-      },
-      {
-        "question": "How do you declare a variable in JavaScript?",
-        "options": ["var x;", "variable x;", "v x;", "declare x;"],
-        "correctAnswer": "var x;"
-      },
-      {
-        "question": "What is the purpose of the 'document.getElementById()' method?",
-        "options": ["To get elements by class name", "To get elements by tag name", "To get elements by ID", "To get elements by name"],
-        "correctAnswer": "To get elements by ID"
-      },
-      {
-        "question": "What is the result of 10 + '5' in JavaScript?",
-        "options": ["105", "15", "10", "Error"],
-        "correctAnswer": "105"
-      }
-    ]
-  }
-  
+  "quiz": [
+    {
+      "question": "What does HTML stand for?",
+      "options": ["HyperText Markup Language", "HyperText Modeling Language", "HyperText Management Language", "HyperText Manipulation Language"],
+      "correctAnswer": "HyperText Markup Language"
+    },
+    {
+      "question": "Which of the following is not a JavaScript data type?",
+      "options": ["String", "Boolean", "Float", "Object"],
+      "correctAnswer": "Float"
+    },
+    {
+      "question": "How do you declare a variable in JavaScript?",
+      "options": ["var x;", "let x;", "const x;", "variable x;"],
+      "correctAnswer": "var x;"
+    },
+    {
+      "question": "What is the purpose of the 'document.getElementById()' method?",
+      "options": ["To get elements by class name", "To get elements by tag name", "To get elements by ID", "To get elements by name"],
+      "correctAnswer": "To get elements by ID"
+    },
+    {
+      "question": "What is the result of 10 + '5' in JavaScript?",
+      "options": ["105", "15", "10", "Error"],
+      "correctAnswer": "105"
+    },
+    {
+      "question": "Which keyword is used to declare a constant in JavaScript?",
+      "options": ["var", "let", "const", "static"],
+      "correctAnswer": "const"
+    },
+    {
+      "question": "What is the output of the following code: ",
+      "optionalCode": "console.log(typeof 42);",
+      "options": ["number", "string", "undefined", "object"],
+      "correctAnswer": "number"
+    },
+    {
+      "question": "What does the '===​' operator do in JavaScript?",
+      "options": ["Checks value and type", "Checks only value", "Checks only type", "Assigns a value"],
+      "correctAnswer": "Checks value and type"
+    },
+    {
+      "question": "How can you comment out a single line in JavaScript?",
+      "options": ["// This is a comment", "/* This is a comment */", "# This is a comment", "' This is a comment"],
+      "correctAnswer": "// This is a comment"
+    },
+    {
+      "question": "Guess the output of the following code:",
+      "optionalCode": "console.log(2 + 2 * 3);",
+      "options": ["8", "10", "12", "14"],
+      "correctAnswer": "8"
+    }
+  ]
+}

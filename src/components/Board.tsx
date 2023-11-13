@@ -1,4 +1,4 @@
-import { Box, Button, Container, Flex, Text } from "@chakra-ui/react";
+import { Box, Button, Code, Container, Flex, Text } from "@chakra-ui/react";
 import { BiRightArrowAlt, BiLeftArrowAlt } from "react-icons/bi";
 import { quiz } from "../data/quiz.json";
 import { useState } from "react";
@@ -37,14 +37,14 @@ export default function Board() {
           />
         </Flex>
       </Box>
-      <Box border="1px solid" padding={5}>
-        <span style={{ textDecoration: "underline" }}>Question:</span>{" "}
+      <Box border="1px solid" padding={5}>       
         {quiz[page - 1].question}
+        {quiz[page - 1]?.optionalCode && <Code children={quiz[page - 1].optionalCode} />}
       </Box>
       <Box border="1px solid" padding={0.5}>
         
         {quiz[page - 1].options.map((opt, i) => (
-            <Button key={i} style={{ width: "100%" }} >{opt}</Button>
+            <Button key={i} style={{ width: "100%" }} colorScheme='orange' variant='outline'>{opt}</Button>
         ))}
        
       </Box>
