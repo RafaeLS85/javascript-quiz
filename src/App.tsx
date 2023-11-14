@@ -3,7 +3,7 @@ import Board from "./components/Board";
 import Header from "./components/Header";
 import Layout from "./components/Layout";
 import Start from "./components/Start";
-import WelcomeModal from "./components/WelcomeModal";
+import WelcomeModal from "./components/Modals/WelcomeModal";
 import { useQuestionStore } from "./store/questions";
 import { useEffect, useState } from "react";
 

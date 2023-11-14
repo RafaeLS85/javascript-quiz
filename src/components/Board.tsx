@@ -18,8 +18,9 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { a11yDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { useEffect, useState } from "react";
 import { Question } from "../types";
-import ExplainAnswer from "./ExplainAnswer";
+import ExplainAnswer from "./Modals/ExplainAnswer";
 import { useQuestionStore } from "../store/questions";
+import ScoreModal from "./Modals/ScoreModal";
 
 interface Props {
   questions: Question[];
@@ -134,6 +135,7 @@ export default function Board({ questions }: Props) {
         isOpen={isOpen}
         onClose={onClose}
       />
+      {/* <ScoreModal /> */}
     </>
   );
 }

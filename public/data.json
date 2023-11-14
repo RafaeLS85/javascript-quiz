@@ -119,6 +119,22 @@
       "answers": ["NaN", "3", "5", "13"],
       "correctAnswer": 2,
       "explanation": "This will actually result in 5 but this is pretty strange, isn't it? Please note, that this example will only work in lax mode, and not in strict mode, and we will come to the explanation soon enough. In earlier versions of JavaScript, a leading 0 on a number marked an octal number. Octal numbers are numbers with a base of 8 (instead 10 like with decimal numbers). This means that numbers from 0 to 7 are valid digits. In our case, 018 can't actually be a octal number, can it? Well it can't and the runtime knows this, which is why it treats 018 as 18 although the right side contains a perfectly valid octal number 015 which is 13 in decimal. And the runtime will perform the calculation exactly like this, which results in: 18 - 13 -> 5"
+    },
+    {
+      "id": 16,
+      "question": "Can you guess the result?",
+      "code": "console.log(('b' + 'a' + + 'a' + 'a').toLowerCase());",
+      "answers": ["bananaa", "baaa", "banana", "ananas"],
+      "correctAnswer": 2,
+      "explanation": "The answer is 'banana'. What actually happens here is the following:The plus operator is defined for numbers and strings and as soon as a string is present on either the left or right side, a string concatenation is perfomed. If we follow the execution path, this is what happens: // 1st step 'b' + 'a' -> 'ba' // 2nd step 'ba' + + 'a' // wait a second! There are two plus operators in this expression. But one of those is actually a prefix-operator, and not a classical plus. What it does is converting the right-side argument to a number, but converting 'a' to a number will actually yield NaN! Let's continue with following the execution path:// 1st step 'b' + 'a' -> 'ba' // 2nd step 'ba' + + 'a' -> 'ba' + NaN -> 'baNaN'// 3rd step'baNaN' + 'a' -> 'baNaNa'// 4th step'baNaNa'.toLowerCase() -> 'banana'"
+    },
+    {
+      "id": 17,
+      "question": "Do you know what will be the output of this code?",
+      "code": "const isTrue = true == [];\n const isFalse = true == ![];\n console.log(isTrue + isFalse);",
+      "answers": ["1", "0", "true", "'true'"],
+      "correctAnswer": 1,
+      "explanation": " Let's break this up: The comparison performed is the abstract comparison operation,which uses type coercion under the hood, when necessary.As the first parameter is a boolean, the following rule applies:'If Type(x) is Boolean, return the result of the comparison ToNumber(x) == y.'And in the next round, the next rule applies,'If Type(y) is Boolean, return the result of the comparison x == ToNumber(y).'Which then boils down to:Number(true) == Number([])=> 1 == 0 const isTrue = true == []; // => false Here, two booleans are present.The right side gets converted through the unary negation, and then negated.An empty array is truthy, converting and negating it yields false.true == false const isFalse = true == ![]; // => false This now evaluates to: false + false which is coered to: Number(false) + Number(false) => 0 + 0 console.log(isTrue + isFalse); // => prints 0"
     }
   ]
 }
