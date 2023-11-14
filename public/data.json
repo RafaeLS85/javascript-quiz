@@ -102,7 +102,7 @@
       "code": "console.log(typeof NaN);",
       "answers": ["NaN", "number", "null", "undefined"],
       "correctAnswer": 1,
-      "explanation": "explanation"
+      "explanation": "typeof NaN actually returns 'number', but why is that? You can actually thank the IEEE Standard for Floating-Point Arithmetic (IEEE 754), which is the specification most programming languages base their implementation of floating point numbers on. Imagine it this way: Let's use TypeScript here as an example to bring statical typing to JavaScript and imagine the following scenario: const result: number = parseFloat(inputArgument); The code is pretty straight-forward. We want a number, and we have to parse an input argument for that. But what if parseFloat actually cannot parse a float? What if we forgot to validate the input and are now passing 'Does this work?' to parseFloat? And this is where NaN comes into the game.NaN simply states: 'This is not a number', but in a type-safe way, so you always get a result of type number ."
     },
     {
       "id": 14,
