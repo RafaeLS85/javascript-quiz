@@ -1,4 +1,4 @@
 # React + TypeScript + Vite + Zustand
 
 ## Quiz game example
-https://javascriptquiz.com/
+initial idea for v1 get from https://javascriptquiz.com/
