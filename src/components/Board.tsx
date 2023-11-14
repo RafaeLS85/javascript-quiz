@@ -16,11 +16,10 @@ import { BsQuestionCircleFill } from "react-icons/bs";
 // import { quiz } from "../data/quiz.json";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { a11yDark } from "react-syntax-highlighter/dist/esm/styles/prism";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Question } from "../types";
 import ExplainAnswer from "./ExplainAnswer";
 import { useQuestionStore } from "../store/questions";
-
 
 interface Props {
   questions: Question[];
@@ -31,7 +30,9 @@ export default function Board({ questions }: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const total = questions.length;
 
-  const limit = useQuestionStore(state => state.limit);
+  const limit = useQuestionStore((state) => state.limit);
+
+  const [selected, setSelected] = useState(false);
 
   const prevPage = (page: number) => {
     if (page > 0) {
@@ -45,9 +46,17 @@ export default function Board({ questions }: Props) {
     }
   };
 
+  const handleClick = () => {
+    setSelected(true);
+  };
+
+  useEffect(() => {
+    setSelected(false);
+  }, [page]);
+
   return (
     <>
-      <Card minW="lg" >
+      <Card minW="lg">
         <Box borderWidth="1px" p={5} borderRadius="lg">
           <Flex justifyContent="space-between" alignItems="center">
             <Button
@@ -59,7 +68,10 @@ export default function Board({ questions }: Props) {
             <Text>
               {page} / {total}
             </Text>
-            <Button onClick={() => nextPage(page + 1)} isDisabled={page === limit}>
+            <Button
+              onClick={() => nextPage(page + 1)}
+              isDisabled={page === limit}
+            >
               <BiRightArrowAlt />
             </Button>
           </Flex>
@@ -67,9 +79,6 @@ export default function Board({ questions }: Props) {
 
         <CardHeader>
           <Heading size="md">{questions[page - 1].question}</Heading>
-          <Box>
-            <BsQuestionCircleFill size={20} onClick={onOpen} color="yellow" />
-          </Box>
         </CardHeader>
 
         <CardBody>
@@ -80,12 +89,21 @@ export default function Board({ questions }: Props) {
               </SyntaxHighlighter>
             </Box>
             <Box padding={0.5}>
-              <Heading size="xs" textTransform="uppercase" marginBottom={4}>
-                OPTIONS:
-              </Heading>
-              {/* <Text pt="2" fontSize="sm">
-                Check out the overview of your clients.
-              </Text> */}
+              <Flex justifyContent="space-between" alignItems="center" marginBottom={5}>
+                <Heading size="xs" textTransform="uppercase">
+                  OPTIONS:
+                </Heading>
+                {selected && (
+                  <>
+                    <BsQuestionCircleFill
+                      size={20}
+                      onClick={onOpen}
+                      color="yellow"
+                    />
+                    <Button size='sm' variant='outline' colorScheme="yellow" onClick={() => nextPage(page + 1)}>Next</Button>
+                  </>
+                )}
+              </Flex>
 
               {questions[page - 1].answers.map((opt, i) => (
                 <Button
@@ -94,6 +112,7 @@ export default function Board({ questions }: Props) {
                   borderRadius={2}
                   colorScheme="blue"
                   variant="outline"
+                  onClick={handleClick}
                 >
                   <Text noOfLines={1}>{opt}</Text>
                 </Button>

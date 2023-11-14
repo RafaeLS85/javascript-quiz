@@ -4,10 +4,10 @@ import {
   Container,
   Flex,
   Heading,
-  Spacer,
   useColorMode,
 } from "@chakra-ui/react";
 import { BsMoon, BsSun } from "react-icons/bs";
+import JavascriptLogo from "../JavascriptLogo";
 
 export default function Header() {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -15,6 +15,9 @@ export default function Header() {
     <>
       <Container centerContent position="relative" margin={6}>
         <Flex justifyContent="space-between" >
+          <Box position="absolute" left="0">
+            <JavascriptLogo />
+          </Box>
           <Box>
             <Heading>JavaScript Quiz</Heading>
           </Box>

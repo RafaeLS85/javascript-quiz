@@ -34,11 +34,11 @@
     },
     {
       "id": 5,
-      "question": "What is the purpose of the 'Array.map()' method in JavaScript?",
-      "code": "let numbers = [1, 2, 3];\nlet doubled = numbers.map(function(num) {\n  return num * 2;\n});",
-      "answers": ["Filter an array", "Create a new array with the results of calling a provided function on every element", "Reduce an array to a single value", "Sort the elements of an array"],
+      "question": "Do you know what will be the output of this code?",
+      "code": "console.log('This is a string.' instanceof String);",
+      "answers": ["true", "false"],
       "correctAnswer": 1,
-      "explanation": "'map' applies a function to each element of the array and creates a new array with the results."
+      "explanation": "This actually returns false. The reason for that circumstance is that JavaScript distinguishes between primitives and objects. And 'This is a string.' is actually a primitive string and not an instance of the object String.If the code was like this: new String('This is a string.') instanceof String you'd actually get the result you would have expected at the beginning. What instanceof actually does is checking if the String constructor is nested within the prototype chain of the value provided.In this case, it isn't."
     },
     {
       "id": 6,
@@ -58,11 +58,11 @@
     },
     {
       "id": 8,
-      "question": "What is the purpose of the 'Array.filter()' method in JavaScript?",
-      "code": "let numbers = [1, 2, 3, 4, 5];\nlet evenNumbers = numbers.filter(function(num) {\n  return num % 2 === 0;\n});",
-      "answers": ["Create a new array with the results of calling a provided function on every element", "Filter elements in an array based on a provided function", "Reduce an array to a single value", "Sort the elements of an array"],
-      "correctAnswer": 1,
-      "explanation": "'filter' creates a new array with elements that satisfy the provided function's condition."
+      "question": "Do you know what will be the output of this code?",
+      "code": "let array = [1, 2, 3];\n  array[6] = 9;\n console.log(array[5]);",
+      "answers": ["1", "2", "9", "undefined"],
+      "correctAnswer": 3,
+      "explanation": "The answer is undefined. This quiz starts with an array of length 3, containing 3 numbers.By not using Array.prototype.push and then assigning a value to a position in the array, that is out of the bounds of the original array, the array is extended automatically by the runtime while also increasing the length property.But this leads to the interesting behavior, that a lot of holes are created within the array.After the expression array[6] = 9; the array looks as follows://  0  1  2     3           4          5      6     <- indices   [1, 2, 3, undefined, undefined, undefined, 9]And this is why, when accessing array[5] undefined is returned. "
     },
     {
       "id": 9,
@@ -111,6 +111,14 @@
       "answers": ["33", "2", "8", "1"],
       "correctAnswer": 0,
       "explanation": "explanation"
+    },
+    {
+      "id": 15,
+      "question": "Do you know what will be the output of this code?",
+      "code": "console.log(018 - 015);",
+      "answers": ["NaN", "3", "5", "13"],
+      "correctAnswer": 2,
+      "explanation": "This will actually result in 5 but this is pretty strange, isn't it? Please note, that this example will only work in lax mode, and not in strict mode, and we will come to the explanation soon enough. In earlier versions of JavaScript, a leading 0 on a number marked an octal number. Octal numbers are numbers with a base of 8 (instead 10 like with decimal numbers). This means that numbers from 0 to 7 are valid digits. In our case, 018 can't actually be a octal number, can it? Well it can't and the runtime knows this, which is why it treats 018 as 18 although the right side contains a perfectly valid octal number 015 which is 13 in decimal. And the runtime will perform the calculation exactly like this, which results in: 18 - 13 -> 5"
     }
   ]
 }
