@@ -28,7 +28,7 @@ function ScoreModal({isOpen, onClose, score}: Props) {
             <ModalCloseButton />
             <ModalBody>
               <Text fontWeight='bold' mb='1rem'>
-              Did you liked the Quiz? You have a suggestion? Need some help? Contact me on Twitter: @denicmarko
+              Did you liked the Quiz? You have a suggestion? Need some help? Contact me on Twitter: @
               </Text>   
               <Text fontWeight='bold' mb='1rem'>
               Huge thanks to Oliver, who wrote most of the questions.
@@ -53,12 +53,3 @@ function ScoreModal({isOpen, onClose, score}: Props) {
   }
 
   export default ScoreModal;
-
-// Awesome!
-// Score: 4/10 (40%)
-
-// Did you liked the Quiz? You have a suggestion? Need some help? Contact me on Twitter: @denicmarko
-
-// Huge thanks to Oliver, who wrote most of the questions.
-
-// Do you want to support this project? Share it with your friends:
