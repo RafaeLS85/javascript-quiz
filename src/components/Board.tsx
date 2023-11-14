@@ -1,11 +1,37 @@
-import { Box, Button, Code, Container, Flex, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Card,
+  CardBody,
+  CardHeader,
+  Flex,
+  Heading,
+  Stack,
+  StackDivider,
+  Text,
+  useDisclosure,
+} from "@chakra-ui/react";
 import { BiRightArrowAlt, BiLeftArrowAlt } from "react-icons/bi";
-import { quiz } from "../data/quiz.json";
+import { BsQuestionCircleFill } from "react-icons/bs";
+// import { quiz } from "../data/quiz.json";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { a11yDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { useState } from "react";
+import { Question } from "../types";
+import ExplainAnswer from "./ExplainAnswer";
+import { useQuestionStore } from "../store/questions";
 
-export default function Board() {
+
+interface Props {
+  questions: Question[];
+}
+
+export default function Board({ questions }: Props) {
   const [page, setPage] = useState(1);
-  const total = quiz.length;
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const total = questions.length;
+
+  const limit = useQuestionStore(state => state.limit);
 
   const prevPage = (page: number) => {
     if (page > 0) {
@@ -20,35 +46,75 @@ export default function Board() {
   };
 
   return (
-    <Container>
-      {/* <Flex justifyContent="space-between"> */}
-      <Box border="1px solid" padding={5}>
-        <Flex>
-          <BiLeftArrowAlt
-            size={25}
-            onClick={() => prevPage(page - 1)}
-            style={{ cursor: "pointer" }}
-          />
-          {page} / {total}
-          <BiRightArrowAlt
-            size={25}
-            onClick={() => nextPage(page + 1)}
-            style={{ cursor: "pointer" }}
-          />
-        </Flex>
-      </Box>
-      <Box border="1px solid" padding={5}>       
-        {quiz[page - 1].question}
-        {quiz[page - 1]?.optionalCode && <Code children={quiz[page - 1].optionalCode} />}
-      </Box>
-      <Box border="1px solid" padding={0.5}>
-        
-        {quiz[page - 1].options.map((opt, i) => (
-            <Button key={i} style={{ width: "100%" }} colorScheme='orange' variant='outline'>{opt}</Button>
-        ))}
-       
-      </Box>
-      {/* </Flex> */}
-    </Container>
+    <>
+      <Card minW="lg" >
+        <Box borderWidth="1px" p={5} borderRadius="lg">
+          <Flex justifyContent="space-between" alignItems="center">
+            <Button
+              onClick={() => prevPage(page - 1)}
+              isDisabled={page - 1 === 0}
+            >
+              <BiLeftArrowAlt />
+            </Button>
+            <Text>
+              {page} / {total}
+            </Text>
+            <Button onClick={() => nextPage(page + 1)} isDisabled={page === limit}>
+              <BiRightArrowAlt />
+            </Button>
+          </Flex>
+        </Box>
+
+        <CardHeader>
+          <Heading size="md">{questions[page - 1].question}</Heading>
+          <Box>
+            <BsQuestionCircleFill size={20} onClick={onOpen} color="yellow" />
+          </Box>
+        </CardHeader>
+
+        <CardBody>
+          <Stack divider={<StackDivider />} spacing="4">
+            <Box>
+              <SyntaxHighlighter language="javascript" style={a11yDark}>
+                {questions[page - 1].code}
+              </SyntaxHighlighter>
+            </Box>
+            <Box padding={0.5}>
+              <Heading size="xs" textTransform="uppercase" marginBottom={4}>
+                OPTIONS:
+              </Heading>
+              {/* <Text pt="2" fontSize="sm">
+                Check out the overview of your clients.
+              </Text> */}
+
+              {questions[page - 1].answers.map((opt, i) => (
+                <Button
+                  key={i}
+                  width="100%"
+                  borderRadius={2}
+                  colorScheme="blue"
+                  variant="outline"
+                >
+                  <Text noOfLines={1}>{opt}</Text>
+                </Button>
+              ))}
+            </Box>
+            {/* <Box>
+              <Heading size="xs" textTransform="uppercase">
+                SCORE
+              </Heading>
+              <Text pt="2" fontSize="sm">
+                See a detailed analysis of all your business clients.               
+              </Text>
+            </Box> */}
+          </Stack>
+        </CardBody>
+      </Card>
+      <ExplainAnswer
+        explain={questions[page - 1].explanation}
+        isOpen={isOpen}
+        onClose={onClose}
+      />
+    </>
   );
 }

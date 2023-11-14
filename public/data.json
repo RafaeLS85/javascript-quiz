@@ -1,11 +1,11 @@
 {
-  "quiz": [
+  "data": [
     {
       "id": 1,
       "question": "What is the result of the following code?",
       "code": "let x = 5;\nlet y = 3;\nlet result = x + y;",
       "answers": ["4", "6", "8", "10"],
-      "correctAnswer": 8,
+      "correctAnswer": 2,
       "explanation": "The code adds the values of x and y, resulting in 8."
     },
     {
@@ -13,7 +13,7 @@
       "question": "What does the 'typeof' operator return for an array?",
       "code": "let myArray = [1, 2, 3];\nlet type = typeof myArray;",
       "answers": ["Object", "Array", "number", "string"],
-      "correctAnswer": "Object",
+      "correctAnswer": 0,
       "explanation": "'typeof' returns 'object' for arrays in JavaScript."
     },
     {
@@ -21,7 +21,7 @@
       "question": "What is the output of the following code?",
       "code": "let num = '5';\nlet result = num + 3;",
       "answers": ["8", "53", "15", "Error"],
-      "correctAnswer": "53",
+      "correctAnswer": 1,
       "explanation": "When a string is concatenated with a number, JavaScript converts the number to a string and performs string concatenation."
     },
     {
@@ -29,39 +29,39 @@
       "question": "How can you check if a variable is undefined in JavaScript?",
       "code": "let myVar;\nif (myVar === undefined) {\n  console.log('Variable is undefined');\n}",
       "answers": ["myVar == undefined", "myVar === null", "typeof myVar === 'undefined'", "myVar == null"],
-      "correctAnswer": "typeof myVar === 'undefined'",
+      "correctAnswer": 2,
       "explanation": "'typeof' can be used to check if a variable is undefined."
     },
     {
       "id": 5,
       "question": "What is the purpose of the 'Array.map()' method in JavaScript?",
-      "code": "// Example\nlet numbers = [1, 2, 3];\nlet doubled = numbers.map(function(num) {\n  return num * 2;\n});",
+      "code": "let numbers = [1, 2, 3];\nlet doubled = numbers.map(function(num) {\n  return num * 2;\n});",
       "answers": ["Filter an array", "Create a new array with the results of calling a provided function on every element", "Reduce an array to a single value", "Sort the elements of an array"],
-      "correctAnswer": "Create a new array with the results of calling a provided function on every element",
+      "correctAnswer": 1,
       "explanation": "'map' applies a function to each element of the array and creates a new array with the results."
     },
     {
       "id": 6,
       "question": "What does the 'let' keyword do in JavaScript?",
-      "code": "// Example\nlet x = 10;",
+      "code": "let x = 10;",
       "answers": ["Declares a variable with block scope", "Declares a constant variable", "Declares a variable with global scope", "Declares a variable with function scope"],
-      "correctAnswer": "Declares a variable with block scope",
+      "correctAnswer": 0,
       "explanation": "'let' declares a variable with block scope, meaning it is limited to the block, statement, or expression where it is defined."
     },
     {
       "id": 7,
-      "question": "Guess the output of the following code: console.log(Math.random());",
+      "question": "Guess the output of the following code:",
       "code": "console.log(Math.random());",
       "answers": ["0", "0.5", "1", "A random decimal between 0 and 1"],
-      "correctAnswer": "A random decimal between 0 and 1",
+      "correctAnswer": 3,
       "explanation": "'Math.random()' generates a random decimal between 0 (inclusive) and 1 (exclusive)."
     },
     {
       "id": 8,
       "question": "What is the purpose of the 'Array.filter()' method in JavaScript?",
-      "code": "// Example\nlet numbers = [1, 2, 3, 4, 5];\nlet evenNumbers = numbers.filter(function(num) {\n  return num % 2 === 0;\n});",
+      "code": "let numbers = [1, 2, 3, 4, 5];\nlet evenNumbers = numbers.filter(function(num) {\n  return num % 2 === 0;\n});",
       "answers": ["Create a new array with the results of calling a provided function on every element", "Filter elements in an array based on a provided function", "Reduce an array to a single value", "Sort the elements of an array"],
-      "correctAnswer": "Filter elements in an array based on a provided function",
+      "correctAnswer": 1,
       "explanation": "'filter' creates a new array with elements that satisfy the provided function's condition."
     },
     {
@@ -69,16 +69,48 @@
       "question": "What is the result of the following code?",
       "code": "let str = 'Hello';\nlet length = str.length;",
       "answers": ["Hello", "5", "6", "undefined"],
-      "correctAnswer": 5,
+      "correctAnswer": 1,
       "explanation": "'str.length' returns the number of characters in the string, which is 5 in this case."
     },
     {
       "id": 10,
-      "question": "Guess the output of the following code: console.log(typeof 'Hello');",
+      "question": "Guess the output of the following code:",
       "code": "console.log(typeof 'Hello');",
       "answers": ["number", "string", "undefined", "object"],
-      "correctAnswer": "string",
+      "correctAnswer": 1,
       "explanation": "'typeof' returns 'string' for a string literal in JavaScript."
+    },
+    {
+      "id": 11,
+      "question": "Do you know what will be the output of this code?",
+      "code": "console.log(1 +  '2' + '2');",
+      "answers": ["122", "32", "NaN2", "NaN"],
+      "correctAnswer": 0,
+      "explanation": "explanation"
+    },
+    {
+      "id": 12,
+      "question": "Do you know what will be the output of this code?",
+      "code": "console.log(0.1 + 0.2 == 0.3);",
+      "answers": ["true", "false"],
+      "correctAnswer": 1,
+      "explanation": "explanation"
+    },
+    {
+      "id": 13,
+      "question": "Can you guess what will be the output of the code below?",
+      "code": "console.log(typeof NaN);",
+      "answers": ["NaN", "number", "null", "undefined"],
+      "correctAnswer": 1,
+      "explanation": "explanation"
+    },
+    {
+      "id": 14,
+      "question": "Do you know what will be the output of this code?",
+      "code": "const numbers = [33, 2, 8];\n numbers.sort();\n console.log(numbers[1])",
+      "answers": ["33", "2", "8", "1"],
+      "correctAnswer": 0,
+      "explanation": "explanation"
     }
   ]
 }
