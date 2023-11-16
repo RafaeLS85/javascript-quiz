@@ -6,9 +6,11 @@ export default function Start() {
     const LIMIT_QUESTIONS = 10; // env, settings, select by user..
 
     const fetchQuestions = useQuestionStore(state => state.fetchQuestions);
+    const startGame = useQuestionStore((state) => state.startGame)
 
     const handleClick = () => {       
         fetchQuestions(LIMIT_QUESTIONS)
+        startGame();
     }
 
     return (

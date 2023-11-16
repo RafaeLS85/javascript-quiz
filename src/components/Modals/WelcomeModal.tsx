@@ -16,8 +16,8 @@ interface Props {
     onClose: () => void;
 }
 
-function WelcomeModal({isOpen, onClose}: Props) {  
-  
+function WelcomeModal({isOpen, onClose}: Props) {   
+
     return (
       <>        
         <Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClose}>

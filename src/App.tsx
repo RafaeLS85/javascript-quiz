@@ -5,15 +5,18 @@ import Layout from "./components/Layout";
 import Start from "./components/Start";
 import WelcomeModal from "./components/Modals/WelcomeModal";
 import { useQuestionStore } from "./store/questions";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import Footer from "./components/Footer";
 
 function App() {
   const questions = useQuestionStore(state => state.questions);
   const { isOpen, onOpen, onClose } = useDisclosure();
-  // const [firstTime, setFirstTime] = useState(false);
+  const activeGame = useQuestionStore((state) => state.activeGame)
 
-  useEffect(() => {
-    onOpen()
+  useEffect(() => {   
+    if(!activeGame){
+      onOpen()
+    } 
   }, [])
 
   return (
@@ -22,6 +25,9 @@ function App() {
       {questions.length === 0 && <Start  />}
       {questions.length > 0 && <Board questions={questions} />}    
       <WelcomeModal isOpen={isOpen} onClose={onClose} /> 
+      {
+        activeGame && <Footer /> 
+      }      
     </Layout>
   );
 }
