@@ -13,14 +13,14 @@ import {
 } from "@chakra-ui/react";
 import { BiRightArrowAlt, BiLeftArrowAlt } from "react-icons/bi";
 import { BsQuestionCircleFill } from "react-icons/bs";
-// import { quiz } from "../data/quiz.json";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { a11yDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { Question } from "../types";
 import ExplainAnswer from "./Modals/ExplainAnswer";
 import { useQuestionStore } from "../store/questions";
 import ScoreModal from "./Modals/ScoreModal";
-import confetti from "canvas-confetti";
+import { useEffect } from "react";
+import { useQuestionBoard } from "../hooks/useQuestionBoard";
 
 const getBtnBgColor = (
   i: number,
@@ -40,30 +40,43 @@ interface Props {
 
 export default function Board({ questions }: Props) {
 
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { 
+    isOpen: isOpenExplainModal, 
+    onOpen: onOpenExplainModal, 
+    onClose: onCloseExplainModal
+  } = useDisclosure();
+  const { 
+      isOpen: isOpenScoreModal, 
+      onOpen: onOpenScoreModal, 
+      onClose: onCloseScoreModal 
+  } = useDisclosure();
+
   const total = questions.length;
  
   const selectAnswer = useQuestionStore((state) => state.selectAnswer);
   const goPrevQuestion = useQuestionStore((state) => state.goPrevQuestion);
   const goNextQuestion = useQuestionStore((state) => state.goNextQuestion)
   const currentQuestion = useQuestionStore((state) => state.currentQuestion);
-
+  const { correct, incorrect, unanswer, isFinished } = useQuestionBoard();  
   const {
     question,
     code,
     answers,
     explanation,
-    userSelected,
-    isCorrect,
-    id,
+    userSelected,    
     correctAnswer,
-  } = questions[currentQuestion];
-
+  } = questions[currentQuestion]; 
   
   const handleClick = (answerIndex: number) => {
     const id = questions[currentQuestion].id;
     selectAnswer(id, answerIndex);
   };  
+
+  useEffect(() => {
+    if(isFinished){
+      onOpenScoreModal()
+    }
+  }, [correct, incorrect, unanswer])  
 
   return (
     <>   
@@ -108,23 +121,23 @@ export default function Board({ questions }: Props) {
                 <Heading size="xs" textTransform="uppercase">
                   OPTIONS:
                 </Heading>
-                {/* {selected && (
+                {userSelected !== undefined && (
                   <>
                     <BsQuestionCircleFill
                       size={20}
-                      onClick={onOpen}
+                      onClick={onOpenExplainModal}
                       color="yellow"
                     />
-                    <Button size='sm' variant='outline' colorScheme="yellow" onClick={() => nextPage(page + 1)}>Next</Button>
+                    <Button size='sm' 
+                      variant='outline' 
+                      colorScheme="yellow" 
+                      onClick={goNextQuestion}
+                      isDisabled={currentQuestion >= questions.length - 1}
+                    >Next</Button>
                   </>
-                )} */}
+                )}
               </Flex>
-
-              {answers.map(
-                (
-                  opt,
-                  i //
-                ) => (
+              {answers.map((opt, i) => (
                   <Button
                     key={i}
                     width="100%"
@@ -145,20 +158,16 @@ export default function Board({ questions }: Props) {
                   </Button>
                 )
               )}
-            </Box>
-            {/* <Box>
-              <Heading size="xs" textTransform="uppercase">
-                SCORE
-              </Heading>
-              <Text pt="2" fontSize="sm">
-                See a detailed analysis of all your business clients.               
-              </Text>
-            </Box> */}
+            </Box>            
           </Stack>
         </CardBody>
       </Card>
-      <ExplainAnswer explain={explanation} isOpen={isOpen} onClose={onClose} />
-      {/* <ScoreModal /> */}
+      <ExplainAnswer explain={explanation} isOpen={isOpenExplainModal} onClose={onCloseExplainModal} />
+      <ScoreModal
+         isOpen={isOpenScoreModal} 
+         onClose={onCloseScoreModal}
+         score={{correct, incorrect, unanswer}}
+      />
     </>
   );
 }

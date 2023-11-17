@@ -9,22 +9,57 @@ import {
     Button,
     Text,
   } from '@chakra-ui/react'
+  import confetti from "canvas-confetti";
+import { useQuestionStore } from '../../store/questions';
 
 interface Props {
     isOpen: boolean;
     onClose: () => void;
-    score: number;
+    score: {
+      correct: number;
+      incorrect: number;
+      unanswer: number;
+    };
 }
 
-function ScoreModal({isOpen, onClose, score}: Props) {  
-  
+function ScoreModal({isOpen, onClose, score}: Props) { 
+  const reset = useQuestionStore((state) => state.reset);
+
+  const MESSAGES = {
+    title: [ 
+      'You are amazing! 🤩🏆', 
+      'Awesome! 😎', 
+      'Great! 😊', 
+      'Alright, keep learning! 😅', 
+      'Pretty bad! 😭', 
+      'Awful! 😔' 
+    ]
+  }
+
+  const showMessage = (finalScore: number) => {
+      if(finalScore === 0) return MESSAGES.title[5];
+      if(finalScore === 10) {
+        confetti();
+        return MESSAGES.title[0];
+      }
+      if(finalScore === 7 ) return MESSAGES.title[2];
+      if(finalScore > 0 && finalScore < 5) return MESSAGES.title[4];
+      if(finalScore > 4 && finalScore < 7) return MESSAGES.title[3];
+      if(finalScore > 7 && finalScore < 10) return MESSAGES.title[1];
+  } 
+
+  const onNewGame = () => {
+    onClose();
+    reset();
+  }
+
     return (
       <>        
         <Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
           <ModalContent>
-            <ModalHeader> Awesome! </ModalHeader>
-            <ModalHeader> Score: 4/10 (40%) </ModalHeader>
+            <ModalHeader fontSize='4xl'> { showMessage(score.correct) } </ModalHeader>
+            <ModalHeader> {`Score: ${score.correct}/10 (${score.correct * 10 }%)`} </ModalHeader>
             <ModalCloseButton />
             <ModalBody>
               <Text fontWeight='bold' mb='1rem'>
@@ -39,7 +74,7 @@ function ScoreModal({isOpen, onClose, score}: Props) {
             </ModalBody>
   
             <ModalFooter>
-              <Button colorScheme='blue' mr={3} onClick={onClose}>
+              <Button colorScheme='blue' mr={3} onClick={onNewGame}>
                 Start new Quiz
               </Button> 
               <Button colorScheme='blue' mr={3} onClick={onClose}>

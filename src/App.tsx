@@ -16,7 +16,7 @@ function App() {
   useEffect(() => {   
     if(!activeGame){
       onOpen()
-    } 
+    }     
   }, [])
 
   return (

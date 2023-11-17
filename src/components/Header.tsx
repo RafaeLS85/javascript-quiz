@@ -7,7 +7,7 @@ import {
   useColorMode,
 } from "@chakra-ui/react";
 import { BsMoon, BsSun } from "react-icons/bs";
-import JavascriptLogo from "../JavascriptLogo";
+import JavascriptLogo from "./JavascriptLogo";
 
 export default function Header() {
   const { colorMode, toggleColorMode } = useColorMode();

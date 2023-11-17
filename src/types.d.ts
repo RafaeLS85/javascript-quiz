@@ -8,3 +8,9 @@ export interface Question {
     userSelected?: number;
     isCorrect?: boolean;
 }
+
+export interface Board {
+    correct: number; 
+    incorrect: number;
+    unanswer?: number;
+}

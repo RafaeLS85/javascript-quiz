@@ -6,6 +6,7 @@ export const useQuestionBoard = () => {
     let unanswer = 0;
     let incorrect = 0;
     let correct = 0;
+    let isFinished = false;
 
     questions.forEach((question) => {
         const { userSelected, correctAnswer } = question;
@@ -19,5 +20,9 @@ export const useQuestionBoard = () => {
         }
     });
 
-    return { correct, incorrect, unanswer }
+    if(unanswer === 0){
+        isFinished = true;
+    }
+
+    return { correct, incorrect, unanswer, isFinished }
 }

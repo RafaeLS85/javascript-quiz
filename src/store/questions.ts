@@ -1,10 +1,12 @@
 import { create } from "zustand";
 import { Question } from "../types";
 import { persist } from "zustand/middleware";
+import services from "../services/questions";
+
 
 interface State {
   questions: Question[];
-  currentQuestion: number; // -> debe reemplazarse el page que utilizamos en el componente Board  por el currentQuestion del store.
+  currentQuestion: number; 
   fetchQuestions: (limit: number) => Promise<void>;
   selectAnswer: (questionId: number, answerIndex: number) => void;
   limit: number;
@@ -13,18 +15,14 @@ interface State {
   reset: () => void;
   activeGame: boolean;
   startGame: () => void;
-}
+ }
 
 export const useQuestionStore = create<State>()(persist((set, get) => {  
   return {
     questions: [],
     currentQuestion: 0,
-    fetchQuestions: async (limit: number) => {     
-
-      const url = "http://localhost:5173/data.json";
-      const res = await fetch(url);
-      const { data } = await res.json();     
-
+    fetchQuestions: async (limit: number) => {       
+      const data = await services.questions();
       const questions = data.sort(() => Math.random() - 0.5).slice(0, limit) 
       set({limit})
       set({questions});
@@ -67,7 +65,7 @@ export const useQuestionStore = create<State>()(persist((set, get) => {
     activeGame: false,
     startGame: () => {
       set( {activeGame: true} )
-    }
+    }   
   }
 }, {
   name: 'questions'
