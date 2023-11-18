@@ -1,0 +1,140 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "question": "What is the result of the following code?",
+      "code": "let x = 5;\nlet y = 3;\nlet result = x + y;",
+      "answers": ["4", "6", "8", "10"],
+      "correctAnswer": 2,
+      "explanation": "The code adds the values of x and y, resulting in 8."
+    },
+    {
+      "id": 2,
+      "question": "What does the 'typeof' operator return for an array?",
+      "code": "let myArray = [1, 2, 3];\nlet type = typeof myArray;",
+      "answers": ["Object", "Array", "number", "string"],
+      "correctAnswer": 0,
+      "explanation": "'typeof' returns 'object' for arrays in JavaScript."
+    },
+    {
+      "id": 3,
+      "question": "What is the output of the following code?",
+      "code": "let num = '5';\nlet result = num + 3;",
+      "answers": ["8", "53", "15", "Error"],
+      "correctAnswer": 1,
+      "explanation": "When a string is concatenated with a number, JavaScript converts the number to a string and performs string concatenation."
+    },
+    {
+      "id": 4,
+      "question": "How can you check if a variable is undefined in JavaScript?",
+      "code": "let myVar;\nif (myVar === undefined) {\n  console.log('Variable is undefined');\n}",
+      "answers": ["myVar == undefined", "myVar === null", "typeof myVar === 'undefined'", "myVar == null"],
+      "correctAnswer": 2,
+      "explanation": "'typeof' can be used to check if a variable is undefined."
+    },
+    {
+      "id": 5,
+      "question": "Do you know what will be the output of this code?",
+      "code": "console.log('This is a string.' instanceof String);",
+      "answers": ["true", "false"],
+      "correctAnswer": 1,
+      "explanation": "This actually returns false. The reason for that circumstance is that JavaScript distinguishes between primitives and objects. And 'This is a string.' is actually a primitive string and not an instance of the object String.If the code was like this: new String('This is a string.') instanceof String you'd actually get the result you would have expected at the beginning. What instanceof actually does is checking if the String constructor is nested within the prototype chain of the value provided.In this case, it isn't."
+    },
+    {
+      "id": 6,
+      "question": "What does the 'let' keyword do in JavaScript?",
+      "code": "let x = 10;",
+      "answers": ["Declares a variable with block scope", "Declares a constant variable", "Declares a variable with global scope", "Declares a variable with function scope"],
+      "correctAnswer": 0,
+      "explanation": "'let' declares a variable with block scope, meaning it is limited to the block, statement, or expression where it is defined."
+    },
+    {
+      "id": 7,
+      "question": "Guess the output of the following code:",
+      "code": "console.log(Math.random());",
+      "answers": ["0", "0.5", "1", "A random decimal between 0 and 1"],
+      "correctAnswer": 3,
+      "explanation": "'Math.random()' generates a random decimal between 0 (inclusive) and 1 (exclusive)."
+    },
+    {
+      "id": 8,
+      "question": "Do you know what will be the output of this code?",
+      "code": "let array = [1, 2, 3];\n  array[6] = 9;\n console.log(array[5]);",
+      "answers": ["1", "2", "9", "undefined"],
+      "correctAnswer": 3,
+      "explanation": "The answer is undefined. This quiz starts with an array of length 3, containing 3 numbers.By not using Array.prototype.push and then assigning a value to a position in the array, that is out of the bounds of the original array, the array is extended automatically by the runtime while also increasing the length property.But this leads to the interesting behavior, that a lot of holes are created within the array.After the expression array[6] = 9; the array looks as follows://  0  1  2     3           4          5      6     <- indices   [1, 2, 3, undefined, undefined, undefined, 9]And this is why, when accessing array[5] undefined is returned. "
+    },
+    {
+      "id": 9,
+      "question": "What is the result of the following code?",
+      "code": "let str = 'Hello';\nlet length = str.length;",
+      "answers": ["Hello", "5", "6", "undefined"],
+      "correctAnswer": 1,
+      "explanation": "'str.length' returns the number of characters in the string, which is 5 in this case."
+    },
+    {
+      "id": 10,
+      "question": "Guess the output of the following code:",
+      "code": "console.log(typeof 'Hello');",
+      "answers": ["number", "string", "undefined", "object"],
+      "correctAnswer": 1,
+      "explanation": "'typeof' returns 'string' for a string literal in JavaScript."
+    },
+    {
+      "id": 11,
+      "question": "Do you know what will be the output of this code?",
+      "code": "console.log(1 +  '2' + '2');",
+      "answers": ["122", "32", "NaN2", "NaN"],
+      "correctAnswer": 0,
+      "explanation": "explanation"
+    },
+    {
+      "id": 12,
+      "question": "Do you know what will be the output of this code?",
+      "code": "console.log(0.1 + 0.2 == 0.3);",
+      "answers": ["true", "false"],
+      "correctAnswer": 1,
+      "explanation": "explanation"
+    },
+    {
+      "id": 13,
+      "question": "Can you guess what will be the output of the code below?",
+      "code": "console.log(typeof NaN);",
+      "answers": ["NaN", "number", "null", "undefined"],
+      "correctAnswer": 1,
+      "explanation": "typeof NaN actually returns 'number', but why is that? You can actually thank the IEEE Standard for Floating-Point Arithmetic (IEEE 754), which is the specification most programming languages base their implementation of floating point numbers on. Imagine it this way: Let's use TypeScript here as an example to bring statical typing to JavaScript and imagine the following scenario: const result: number = parseFloat(inputArgument); The code is pretty straight-forward. We want a number, and we have to parse an input argument for that. But what if parseFloat actually cannot parse a float? What if we forgot to validate the input and are now passing 'Does this work?' to parseFloat? And this is where NaN comes into the game.NaN simply states: 'This is not a number', but in a type-safe way, so you always get a result of type number ."
+    },
+    {
+      "id": 14,
+      "question": "Do you know what will be the output of this code?",
+      "code": "const numbers = [33, 2, 8];\n numbers.sort();\n console.log(numbers[1])",
+      "answers": ["33", "2", "8", "1"],
+      "correctAnswer": 0,
+      "explanation": "explanation"
+    },
+    {
+      "id": 15,
+      "question": "Do you know what will be the output of this code?",
+      "code": "console.log(018 - 015);",
+      "answers": ["NaN", "3", "5", "13"],
+      "correctAnswer": 2,
+      "explanation": "This will actually result in 5 but this is pretty strange, isn't it? Please note, that this example will only work in lax mode, and not in strict mode, and we will come to the explanation soon enough. In earlier versions of JavaScript, a leading 0 on a number marked an octal number. Octal numbers are numbers with a base of 8 (instead 10 like with decimal numbers). This means that numbers from 0 to 7 are valid digits. In our case, 018 can't actually be a octal number, can it? Well it can't and the runtime knows this, which is why it treats 018 as 18 although the right side contains a perfectly valid octal number 015 which is 13 in decimal. And the runtime will perform the calculation exactly like this, which results in: 18 - 13 -> 5"
+    },
+    {
+      "id": 16,
+      "question": "Can you guess the result?",
+      "code": "console.log(('b' + 'a' + + 'a' + 'a').toLowerCase());",
+      "answers": ["bananaa", "baaa", "banana", "ananas"],
+      "correctAnswer": 2,
+      "explanation": "The answer is 'banana'. What actually happens here is the following:The plus operator is defined for numbers and strings and as soon as a string is present on either the left or right side, a string concatenation is perfomed. If we follow the execution path, this is what happens: // 1st step 'b' + 'a' -> 'ba' // 2nd step 'ba' + + 'a' // wait a second! There are two plus operators in this expression. But one of those is actually a prefix-operator, and not a classical plus. What it does is converting the right-side argument to a number, but converting 'a' to a number will actually yield NaN! Let's continue with following the execution path:// 1st step 'b' + 'a' -> 'ba' // 2nd step 'ba' + + 'a' -> 'ba' + NaN -> 'baNaN'// 3rd step'baNaN' + 'a' -> 'baNaNa'// 4th step'baNaNa'.toLowerCase() -> 'banana'"
+    },
+    {
+      "id": 17,
+      "question": "Do you know what will be the output of this code?",
+      "code": "const isTrue = true == [];\n const isFalse = true == ![];\n console.log(isTrue + isFalse);",
+      "answers": ["1", "0", "true", "'true'"],
+      "correctAnswer": 1,
+      "explanation": " Let's break this up: The comparison performed is the abstract comparison operation,which uses type coercion under the hood, when necessary.As the first parameter is a boolean, the following rule applies:'If Type(x) is Boolean, return the result of the comparison ToNumber(x) == y.'And in the next round, the next rule applies,'If Type(y) is Boolean, return the result of the comparison x == ToNumber(y).'Which then boils down to:Number(true) == Number([])=> 1 == 0 const isTrue = true == []; // => false Here, two booleans are present.The right side gets converted through the unary negation, and then negated.An empty array is truthy, converting and negating it yields false.true == false const isFalse = true == ![]; // => false This now evaluates to: false + false which is coered to: Number(false) + Number(false) => 0 + 0 console.log(isTrue + isFalse); // => prints 0"
+    }
+  ]
+}
